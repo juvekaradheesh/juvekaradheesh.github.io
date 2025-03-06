@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Running PyTorch on VT ARC</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../lib/academicons-1.9.1/css/academicons.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="../lib/hover/hover.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- Responsive css -->
+    <link href="../css/responsive.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/logo.jpg">
+
+    <!-- =======================================================
+    Theme Name: Folio
+    Theme URL: https://bootstrapmade.com/folio-bootstrap-portfolio-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+    ======================================================= -->
+</head>
+
+<body>
+
+    <!-- start section navbar -->
+    <nav id="main-nav">
+        <div class="row">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.jpg" style="width:50px;" alt="logo"></a>
+                </div>
+
+                <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+                <ul class="nav-menu list-unstyled">
+                    <li><a href="../index.html#header" class="smoothScroll">Home</a></li>
+                    <li><a href="../index.html#about" class="smoothScroll">About</a></li>
+                    <li><a href="../index.html#projects" class="smoothScroll">Projects</a></li>
+                    <li><a href="../index.html#publications" class="smoothScroll">Publications</a></li>
+                    <li><a href="../index.html#articles" class="smoothScroll">Articles</a></li>
+                    <!-- <li><a href="#contact" class="smoothScroll">Contact</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End section navbar -->
+    <!-- start section main content -->
+    <div class="main-content paddsection">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
+                        <div class="container-main single-main">
+                            <div class="col-md-12">
+                                <div class="block-main mb-30">
+                                    <img src="../images/arc-pytorch-gpu.jpg" class="img-responsive col-sm-12" alt="reviews2">
+                                    <hr>
+                                    <div class="content-main single-post padDiv">
+                                        <div class="journal-txt">
+                                            <h1><a href="#">Running PyTorch on VT ARC GPU: From ARC Basics to Running your code on GPU</a></h1>
+                                        </div>
+                                        <div class="post-meta">
+                                            <ul class="list-unstyled mb-0">
+                                                <!-- <li class="author">by:<a href="#">juvekaradheesh</a></li> -->
+                                                <li class="date">date:<a href="#">August 26, 2022</a></li>
+                                                <!-- <li class="commont"><i class="ion-ios-heart-outline"></i><a href="#">3 Comments</a></li> -->
+                                            </ul>
+                                        </div>
+                                        <p>
+
+                                            <h5>Introduction</h5>
+                                            <br> Advanced Research Computing (ARC) has a high-performance computing clusters for researchers at Virginia Tech. I have created this article for new users to ARC since when I started using ARC it was little
+                                            tough as I was new to many things such as slurm scheduling, ARC modules, etc. The information on
+                                            <a href="https://www.docs.arc.vt.edu/resources.html#resources">ARC documentation pages</a> is very scattered and is hard to find exactly what you're looking for sometimes. So, I have created this article for
+                                            everyone who wants to train their first deep learning model on ARC with PyTorch.
+                                            <br> GPU clusters at VT (<a href="https://www.docs.arc.vt.edu/resources/gpu.html">More info here</a>):
+                                            <ul>
+                                                <li><b>Cascades:</b> old server, V100 GPUs, many are now moved to Infer (<a href="https://www.docs.arc.vt.edu/resources/compute/02cascades.html">More info here</a>)</li>
+                                                <li><b>Huckleberry:</b> old server, NVIDIA Tesla P100 GPUs (<a href="https://www.docs.arc.vt.edu/resources/compute/huckleberry.html">More info here</a>)</li>
+                                                <li><b>Infer:</b> NVIDIA Volta V100 GPUs, NVIDIA Tesla P100 GPUs, NVIDIA Tesla T4 GPUs <em>(I use this for small-normal models)</em>(<a href="https://www.docs.arc.vt.edu/resources/compute/01infer.html">More info here</a>)</li>
+                                                <li><b>TinkerCliffs:</b> NVIDIA A100 GPUs <em>(I use this for large models, I would recommend using Infer V100 GPUs for small models requiring
+                                                    < 16GB GPU memory since <code>a100_normal_q</code> is mostly busy and waiting is higher.)</em>(<a href="https://www.docs.arc.vt.edu/resources/compute/00tinkercliffs.html">More info here</a>)</li>
+                                            </ul>
+
+                                            <h5>Logging in</h5>
+                                            <br> You can log in to any of the servers using ssh.
+                                            <ul>
+                                                <li><code>ssh &ltusername&gt@tinkercliffs1.arc.vt.edu</code></li>
+                                                <li><code>ssh &ltusername&gt@tinkercliffs2.arc.vt.edu</code></li>
+                                                <li><code>ssh &ltusername&gt@infer1.arc.vt.edu</code></li>
+                                                <li><code>ssh &ltusername&gt@infer2.arc.vt.edu</code></li>
+
+                                            </ul>
+
+
+                                            <h5>Storage</h5>
+                                            <br> You can read about the storage options you have <a href="https://www.docs.arc.vt.edu/resources/storage.html">here</a>. You should have got access to some storage in <code>/projects</code> which is accessible
+                                            from both <em>Infer</em> & <em>TinkerCliffs</em> clusters. I generally store my code on some small stuff in my <code>/home</code> directory and the large datasets are stored in <code>/projects</code>
+                                            <br><br>
+
+                                            <h5>Job Submission</h5>
+                                            <br>ARC uses slurm for scheduling. So you need to create a job file as given on cascades page <a href="https://www.docs.arc.vt.edu/resources/compute/02cascades.html">here</a>. You can also check out <a href="https://drive.google.com/file/d/1EUGXhElnyz6ROLSe3m1E52Is2k1wsJRv/view">this</a>                                            example job file I have created to run a pyuthon code on GPU.
+
+                                            <br>
+                                            <br>
+                                            <h5>Slurm queueing</h5>
+                                            <br> There are different queues on which we can submit our jobs depending upon the job requirements. Here are the ones I use frequently: <br> <br>
+                                            <table class="table">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>Queue</th>
+                                                        <th>Resources</th>
+                                                        <th>Cluster</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr>
+                                                    <td><code>v100_normal_q</code></td>
+                                                    <td>V100 GPUs</td>
+                                                    <td>Infer, Cascades</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>a100_normal_q</code></td>
+                                                    <td>A100 GPUs</td>
+                                                    <td>TinkerCliffs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><code>normal_q</code></td>
+                                                    <td>CPU queues</td>
+                                                    <td>All clusters</td>
+                                                </tr>
+                                            </table>
+                                            Other limitations like max-time, max-cores, max-gpus, etc. are given on each server page on which the queue exists. For most of the queuest there exists <code>dev_q</code> eg. <code>v100_dev_q</code> which can
+                                            let you access the queue for short amout of time and generally has less (mostly none) waiting time. There are more GPU queues on Infer as well.
+
+                                            <br> <br> Slurm queuing details are given on <a href="https://www.docs.arc.vt.edu/usage/slurm.html#slurm">this</a> page.
+                                            <br>
+                                            <br> Here are some of those important commands related to slurm queing:
+                                            <ul>
+                                                <li>Submit job: <code>sbatch ./file_name.sh</code></li>
+                                                <li>Check job status: <code>squeue -j &ltjob_number&gt</code> (You'll get the job number after submitting the job.)</li>
+                                                <li>Check queue status: <code>squeue -p &ltqueue_name&gt</code> &ltqueue_name&gt example would be <code>v100_normal_q</code> on <em>Infer</em></li>
+                                                <li>Check jobs submitted by particular user on current cluster: <code>squeue -u &ltusername&gt</code></li>
+                                            </ul>
+                                            The output of the jobs are saved in a file named <code>Slurm-&ltjob_number&gt.out</code> as the same location from where you submitted the job.
+                                            <br>
+                                            <br>
+
+                                            <h5>Interactive session</h5>
+                                            <br> Interactive session is mostly used for development or debugging. You can try interactive session on gpu by queuing to <code>dev_q</code> for upto 2-4 hours or <code>normal_q</code> for more time.
+                                            <br>Command for interactive session.
+                                            <ul>
+                                                <li>
+                                                    <code>interact -A &ltallocation_name&gt -t 2:00:00 -p v100_dev_q -n 1 --gres=gpu:1 --mem=50G </code>
+                                                    <br>Here I am requesting for interactive session for 2 hours on <code>v100_dev_q</code> with 1 gpu & 50GB memory
+                                                </li>
+                                                <li>
+                                                    <code>interact -A virtual_presenter -t 10:00:00 -p normal_q --ntasks=200 --mem-per-cpu=10G</code>
+                                                    <br>Here I am requesting for interactive session for 10 hours on <code>normal_q</code> (CPU queue) with 200 cores and 10GB per cpu core.
+                                                </li>
+                                            </ul>
+                                            To check your allocation name and all login to <a href="https://coldfront.arc.vt.edu">coldfront.arc.vt.edu</a>.
+                                            <br>
+                                            <br>
+
+                                            <h5>Modules</h5>
+                                            <br> To say in simple words, modules are basically applications/services which you can load to use.
+                                            <br> Commands related to modules (The available modules may vary from server to server, but here's what I use on TinkerCliffs):
+                                            <ul>
+                                                <li>See all available modules: <code>module avail</code> </li>
+                                                <li>Purge: <code>module purge</code></li>
+                                                <li>Unload all modules <code>module reset</code></li>
+                                                <li>Load Anaconda: <code>module load Anaconda/2020.11</code> (I use this one, I believe it's the latest available there)</li>
+                                                <li>Load FFmpeg: <code>module load FFmpeg</code></li>
+                                            </ul>
+
+                                            <h5>Process for running PyTorch code:</h5>
+                                            <br>
+                                            <ol>
+                                                <li>Log in to a cluster.</li>
+                                                <li>Load Anaconda Module.</li>
+                                                <li>Create conda environment (You must know this).</li>
+                                                <li>Start interactive session in GPU based <code>dev_q</code> so that appropriate torch version is installed.</li>
+                                                <li>Load cuda module if required (It is already loaded in TinkerCliffs, I am not sure about Infer).</li>
+                                                <li>Install torch in the environment & other requirements.</li>
+                                                <li>Create a job file as given above (change as per your requirements, and load proper modules, no need to load cuda if it already loaded when you tried in interactive session) </li>
+                                                <li>Submit the job file.</li>
+                                            </ol>
+                                            Hope this article helped you getting started on ARC faster. If you have any doubts regarding ARC, you can join the <a href="https://arc.vt.edu/about/office-hours.html">ARC office hours</a>. They are really helpful
+                                            and have helped me solve my queries on multiple occasions. If you have any doubts regarding this article, you can email me at <code> juvekaradheesh at vt dot edu </code>
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  </div> -->
+    <!-- start section main content -->
+
+    <!-- start section footer -->
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+
+                <ul class="list-unstyled">
+                    <li><a href="https://github.com/juvekaradheesh/"><i class="ion-social-github"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/juvekaradheesh/"><i class="ion-social-linkedin"></i></a></li>
+                    <li>|</li>
+                    <li><a href="https://www.facebook.com/juvekaradheesh/"><i class="ion-social-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/juvekaradheesh"><i class="ion-social-instagram"></i></a></li>
+                    <li><a href="https://twitter.com/adheeshjuvekar"><i class="ion-social-twitter"></i></a></li>
+                </ul>
+
+            </div>
+
+            <p>&copy; Copyrights Folio. All rights reserved.</p>
+
+            <div class="credits">
+                <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Folio
+      -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- End section footer -->
+
+    <!-- JavaScript Libraries -->
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jquery/jquery-migrate.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/typed/typed.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/magnific-popup/magnific-popup.min.js"></script>
+    <script src="../lib/isotope/isotope.pkgd.min.js"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="../contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="../js/main.js"></script>
+
+</body>
+
+</html>
