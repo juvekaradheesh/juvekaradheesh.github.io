@@ -1,0 +1,95 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { publications } from "@/data/cv";
+import { highlightAuthor } from "@/lib/utils";
+import {template} from "@/settings";
+
+const ALL_PAPERS = publications; // This will be replaced with dynamic data later
+const ITEMS_PER_PAGE = 5;
+const totalPages = Math.ceil(ALL_PAPERS.length / ITEMS_PER_PAGE);
+
+const withBase = (path?: string) => {
+  if (!path) return undefined;
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  return `${template.base}${path}`;
+};
+---
+
+<Layout title="Papers">
+  <div class="prose max-w-none">
+    <h1 class="text-3xl font-bold mb-0">Publications</h1>
+
+    <div class="mt-8">
+      {
+        ALL_PAPERS.map((paper, index) => (
+          <div class={`card bg-base-200 ${index < ALL_PAPERS.length - 1 ? 'mb-4' : ''}`}>
+            <div class="card-body pt-4">
+              <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-shrink-0 w-48 h-48 md:w-72 md:h-72 bg-base-300 rounded mx-auto md:mx-0 overflow-hidden flex items-center justify-center">
+                  {paper.image ? (
+                    <img
+                      src={withBase(paper.image)}
+                      alt={paper.title}
+                      loading="lazy"
+                      class="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-base-300" aria-hidden="true"></div>
+                  )}
+                </div>
+                <div class="flex-1">
+                  <h2 class="card-title text-xl">
+                    <a href={template.base + paper.link} class="hover:text-accent">
+                      {paper.title}
+                    </a>
+                  </h2>
+                  <p class="text-base mb-2">
+                    <span set:html={highlightAuthor(paper.authors)} />
+                  </p>
+                  <p class="text-sm mb-3">
+                    <span class="italic">{paper.journal}</span> • {paper.time}
+                  </p>
+                  <div class="abstract-container">
+                    <p class="abstract-text text-sm text-base-content/80" data-full={paper.abstract}>{paper.abstract?.slice(0, 200)}{paper.abstract && paper.abstract.length > 200 ? '... ' : ''}{paper.abstract && paper.abstract.length > 200 && <button class="read-more-btn text-sm text-accent underline" onclick="toggleAbstract(this)">Read more</button>}</p>
+                  </div>
+                  {paper.notes && <p class="text-sm mt-2">{paper.notes}</p>}
+                  <div class="card-actions justify-end mt-4">
+                    <a href={paper.link} class="btn btn-sm btn-secondary text-secondary-content">
+                      Read Paper
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {totalPages > 1 && (
+      <div class="flex justify-center mt-8">
+        <div class="join">
+          <button class="join-item btn btn-sm">«</button>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button class={`join-item btn btn-sm ${page === 1 ? 'btn-active' : ''}`}>
+              {page}
+            </button>
+          ))}
+          <button class="join-item btn btn-sm">»</button>
+        </div>
+      </div>
+    )}
+  </div>
+</Layout>
+
+<script client:load>
+  function toggleAbstract(button) {
+    const textElement = button.parentElement;
+    const fullAbstract = textElement.dataset.full;
+    if (button.textContent === 'Read more') {
+      textElement.innerHTML = fullAbstract + ' <button class="read-more-btn text-sm text-accent underline" onclick="toggleAbstract(this)">Read less</button>';
+    } else {
+      textElement.innerHTML = fullAbstract.slice(0, 200) + '... <button class="read-more-btn text-sm text-accent underline" onclick="toggleAbstract(this)">Read more</button>';
+    }
+  }
+</script>

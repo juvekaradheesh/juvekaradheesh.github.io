@@ -1,0 +1,34 @@
+---
+import SocialIcons from './SocialIcons.astro'
+
+
+const {fullName, title, institute, profilePicture} = Astro.props
+---
+<div class='flex-1'>
+  <h1 class='text-4xl font-bold mb-4'>
+    Welcome! I'm <span class='text-secondary'>{fullName}</span>
+  </h1>
+  <p class='text-xl text-gray-600 mb-4'>{title}{institute ? ` at ${institute}` : ''}</p>
+  <p class='text-lg mb-6'>
+    I'm a Computer Science PhD student at <a href="https://plan-lab.github.io/" class="text-accent">PLAN Lab, UIUC</a>, advised by 
+    <a href="https://isminoula.github.io/" class="text-accent">Dr. Ismini Lourentzou</a>. 
+    My research interests are in Multimodal Learning and Generative AI, with a focus on building models that can understand and 
+    create visual content in ways that are <b>grounded, controllable, and interpretable</b>.
+  </p>
+  <p class='text-lg mb-6'>
+    I’m open to collaborations and always interested in discussing new research ideas, feel free to reach out via email. 
+    If you’re a self-motivated undergraduate (especially at UIUC) interested in working on Generative AI / multimodal projects 
+    feel free to reach out via email.
+  </p>
+  <div class='flex gap-4'>
+    <SocialIcons />
+  </div>
+</div>
+<div class='size-72 lg:block hidden'>
+  <!-- Add your profile image -->
+  <img
+    src={profilePicture}
+    alt={fullName}
+    class='w-full h-full mask mask-circle size-44'
+  />
+</div>
