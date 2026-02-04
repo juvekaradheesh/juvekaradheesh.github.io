@@ -52,6 +52,15 @@ export const skills = [
 
 export const publications = [
 	{
+		title: 'PyraTok: Language-Aligned Pyramidal Tokenizer for Video Understanding and Generation',
+		authors: 'Onkar Susladkar, Tushar Prakash, Adheesh Juvekar, Kiet A Nguyen, Dong-Hwan Jang, Inderjit S Dhillon, Ismini Lourentzou',
+		journal: 'arXiv preprint arXiv:2601.16210',
+		time: '2026',
+		link: 'https://arxiv.org/abs/2601.16210',
+		abstract: 'Discrete video VAEs underpin modern text-to-video generation and video understanding systems, yet existing tokenizers typically learn visual codebooks at a single scale with limited vocabularies and shallow language supervision, leading to poor cross-modal alignment and zero-shot transfer. We introduce PyraTok, a language-aligned pyramidal tokenizer that learns semantically structured discrete latents across multiple spatiotemporal resolutions. PyraTok builds on a pretrained video VAE and a novel Language aligned Pyramidal Quantization (LaPQ) module that discretizes encoder features at several depths using a shared large binary codebook, yielding compact yet expressive video token sequences. To tightly couple visual tokens with language, PyraTok jointly optimizes multi-scale text-guided quantization and a global autoregressive objective over the token hierarchy. Across ten benchmarks, PyraTok delivers state-of-the-art (SOTA) video reconstruction, consistently improves text-to-video quality, and sets new SOTA zero-shot performance on video segmentation, temporal action localization, and video understanding, scaling robustly to up to 4K/8K resolutions.',
+		image: '/papers/pyratok.png',
+	},
+	{
 		title: 'Counterfactual Segmentation Reasoning: Diagnosing and Mitigating Pixel-Grounding Hallucination',
 		authors: 'Xinzhuo Li*, Adheesh Juvekar*, Xingyou Liu, Muntasir Wahed, Kiet A Nguyen, Ismini Lourentzou',
 		journal: 'arXiv preprint arXiv:2506.21546',
