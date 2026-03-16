@@ -14,3 +14,8 @@ export function trimExcerpt(excerpt: string): string {
 	const excerptLength = template.excerptLength
 	return excerpt.length > excerptLength ? `${excerpt.substring(0, excerptLength)}...` : excerpt
 }
+
+export function highlightJournal(journal?: string): string {
+	if (!journal) return ''
+	return journal.replace(/CVPR/g, `<span class="text-accent font-semibold">CVPR</span>`)
+}

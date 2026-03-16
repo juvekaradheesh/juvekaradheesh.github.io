@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="presentation">
+  <defs>
+    <linearGradient id="g-one-edit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7b75ff" />
+      <stop offset="100%" stop-color="#5ed4fd" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#g-one-edit)" rx="24" />
+  <text x="50%" y="38%" text-anchor="middle" fill="#fff" font-size="26" font-weight="700" font-family="Inter,Segoe UI,sans-serif">
+    One Editor
+  </text>
+  <text x="50%" y="58%" text-anchor="middle" fill="#fff" font-size="26" font-weight="700" font-family="Inter,Segoe UI,sans-serif">
+    Many Edits
+  </text>
+  <rect x="60" y="205" width="280" height="4" rx="2" fill="#fff" opacity="0.8" />
+  <text x="50%" y="242" text-anchor="middle" fill="#fff" font-size="12" font-family="Inter,Segoe UI,sans-serif">
+    Training-free video edits
+  </text>
+</svg>

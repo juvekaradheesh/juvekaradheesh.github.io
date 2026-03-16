@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="presentation">
+  <defs>
+    <linearGradient id="g-unidflow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7797d" />
+      <stop offset="100%" stop-color="#3b65ff" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#g-unidflow)" rx="24" />
+  <text x="50%" y="38%" text-anchor="middle" fill="#fff" font-size="26" font-weight="700" font-family="Inter,Segoe UI,sans-serif">
+    UniDFlow
+  </text>
+  <text x="50%" y="58%" text-anchor="middle" fill="#fff" font-size="26" font-weight="500" font-family="Inter,Segoe UI,sans-serif">
+    Discrete flow matching
+  </text>
+  <text x="50%" y="74%" text-anchor="middle" fill="#fff" font-size="14" font-weight="500" font-family="Inter,Segoe UI,sans-serif">
+    Multimodal reasoning + generation
+  </text>
+</svg>

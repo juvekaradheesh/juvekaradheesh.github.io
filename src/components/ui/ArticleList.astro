@@ -1,5 +1,5 @@
 ---
-import { highlightAuthor } from '@/lib/utils'
+import { highlightAuthor, highlightJournal } from '@/lib/utils'
 
 interface Props {
   listTitle: string;
@@ -28,9 +28,21 @@ const {listTitle, listItems} = Astro.props
 							<h3 class='text-xl font-semibold mb-2'>{item.title}</h3>
 						)}
 						{item.authors && <p class="text-sm mb-2"><span set:html={highlightAuthor(item.authors)}></span></p>}
-						<p >
-							{item.journal} • {item.time}
-						</p>						{item.notes && <p class="text-sm mt-2">{item.notes}</p>}					</div>
+						{(() => {
+							const showTime = Boolean(item.time && (!item.journal || !item.journal.includes(item.time)));
+							return (
+								<p>
+									{item.journal ? (
+										<span set:html={highlightJournal(item.journal)}></span>
+									) : (
+										item.time
+									)}
+									{item.journal && showTime && <> • {item.time}</>}
+								</p>
+							)
+						})()}
+						{item.notes && <p class="text-sm mt-2">{item.notes}</p>}
+					</div>
 				))
 			}
 		</div>

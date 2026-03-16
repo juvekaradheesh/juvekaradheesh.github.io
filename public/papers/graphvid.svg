@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 280" role="presentation">
+  <defs>
+    <linearGradient id="g-graphvid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35ffab" />
+      <stop offset="100%" stop-color="#38a1ff" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#g-graphvid)" rx="24" />
+  <text x="50%" y="32%" text-anchor="middle" fill="#061A3E" font-size="26" font-weight="700" font-family="Inter,Segoe UI,sans-serif">
+    GraphVid
+  </text>
+  <text x="50%" y="56%" text-anchor="middle" fill="#061A3E" font-size="18" font-weight="600" font-family="Inter,Segoe UI,sans-serif">
+    Interactive graph control
+  </text>
+  <text x="50%" y="68%" text-anchor="middle" fill="#061A3E" font-size="18" font-weight="600" font-family="Inter,Segoe UI,sans-serif">
+    video generation
+  </text>
+  <circle cx="88" cy="204" r="16" fill="#061A3E" opacity="0.5" />
+  <circle cx="312" cy="204" r="16" fill="#061A3E" opacity="0.5" />
+  <rect x="120" y="196" width="160" height="16" rx="8" fill="#061A3E" opacity="0.5" />
+</svg>
