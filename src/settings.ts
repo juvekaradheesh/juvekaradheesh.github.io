@@ -4,26 +4,11 @@ export const profile = {
 	institute: 'University of Illinois at Urbana-Champaign',
 	author_name: 'Adheesh Juvekar', // Author name to be highlighted in the papers section
 	research_areas: [
-		{ 
-			title: 'Multimodal Learning & Generative AI', 
-			description: "I'm particularly interested in multimodal understanding, image/video generation. Currently, I am exploring hallucination mitigation in grounded vision-language models and controllable image/video generation with diffusion/flow-based models. I'm also interested in emerging direction at the intersection of generation and perception such as 3D-consistent generation, egocentric video understanding/editing as a step towards reliable and robust world models.", 
-			field: 'Computer Science' 
+		{
+			title: 'Multimodal Learning & Generative AI',
+			description: "My research focuses on how models connect language with visual evidence for multimodal understanding, generation, and editing. My current work investigates how models interpret visual regions and use regional information to guide reasoning and control visual content. Through this work, I aim to develop models that understand scene structure and support precise, temporally consistent visual generation and editing. I'm also interested in reasoning at the intersection of generation and perception, including spatial and temporal reasoning, 3D-consistent generation, and unified models for understanding, generation, and editing, as a step towards reliable and robust world models.",
+			field: 'Computer Science'
 		},
-		// {
-		// 	title: 'Generative AI',
-		// 	description: 'Brief description of the research interest',
-		// 	field: 'Computer Science'
-		// },
-		// {
-		// 	title: 'Computer Vision',
-		// 	description: 'Brief description of the research interest',
-		// 	field: 'Computer Science'
-		// },
-		// {
-		// 	title: '3D Vision',
-		// 	description: 'Brief description of the research interest',
-		// 	field: 'Computer Science'
-		// },
 	],
 }
 
@@ -45,9 +30,6 @@ export const template = {
 	menu_left: false,
 	transitions: true,
 	lightTheme: 'bumblebee', // Select one of the Daisy UI Themes or create your own
-	darkTheme: '', // Select one of the Daisy UI Themes or create your own
-	excerptLength: 200,
-	postPerPage: 5,
     base: '' // Repository name starting with /
 }
 

@@ -4,6 +4,8 @@ export interface Experience {
   title: string;
   location?: string;
   description?: string;
+  logo?: string;
+  category?: 'Industry' | 'Research';
 }
 
 export interface Education {
@@ -12,11 +14,7 @@ export interface Education {
   degree: string;
   location?: string;
   description?: string;
-}
-
-export interface Skill {
-  title: string;
-  description: string;
+  logo?: string;
 }
 
 export interface Publication {
@@ -25,23 +23,14 @@ export interface Publication {
   journal: string;
   time: string;
   link?: string;
+  paperLink?: string;
+  codeLink?: string;
   abstract?: string;
+  abstractSource?: string;
   notes?: string;
   image?: string;
 }
 
 export function isExperience(element: Experience | Education): element is Experience {
   return 'title' in element && 'company' in element;
-}
-
-export function isEducation(element: Education | Experience): element is Education {
-  return 'school' in element && 'degree' in element;
-}
-
-export function isSkill(element: Skill | Publication): element is Skill {
-  return 'description' in element;
-}
-
-export function isPublication(element: Skill | Publication): element is Publication {
-  return 'authors' in element;
 }

@@ -1,48 +1,8 @@
 ---
-import { highlightAuthor, highlightJournal } from '@/lib/utils'
-
-interface Props {
-  listTitle: string;
-  listItems: {
-    title: string;
-    journal: string;
-    time: string;
-    link?: string;
-    authors?: string;
-    notes?: string;
-  }[];
-}
-const {listTitle, listItems} = Astro.props
+import type { Publication } from '@/types/cv';
+import PublicationCard from './PublicationCard.astro';
+interface Props { listTitle: string; listItems: Publication[]; }
+const { listTitle, listItems } = Astro.props;
 ---
-
-<h2 class='text-3xl font-bold mb-8'>{listTitle}</h2>
-		<div class='space-y-6'>
-			{
-				listItems.map(item => (
-					<div class='p-6 rounded-lg text-base-content bg-base-200'>
-						{item.link ? (
-							<a href={item.link} target="_blank" class='block hover:text-accent transition-colors duration-200'>
-								<h3 class='text-xl font-semibold mb-2'>{item.title}</h3>
-							</a>
-						) : (
-							<h3 class='text-xl font-semibold mb-2'>{item.title}</h3>
-						)}
-						{item.authors && <p class="text-sm mb-2"><span set:html={highlightAuthor(item.authors)}></span></p>}
-						{(() => {
-							const showTime = Boolean(item.time && (!item.journal || !item.journal.includes(item.time)));
-							return (
-								<p>
-									{item.journal ? (
-										<span set:html={highlightJournal(item.journal)}></span>
-									) : (
-										item.time
-									)}
-									{item.journal && showTime && <> • {item.time}</>}
-								</p>
-							)
-						})()}
-						{item.notes && <p class="text-sm mt-2">{item.notes}</p>}
-					</div>
-				))
-			}
-		</div>
+<h2 class="text-3xl font-bold mb-4">{listTitle}</h2>
+<div>{listItems.map(paper => <PublicationCard paper={paper} />)}</div>
