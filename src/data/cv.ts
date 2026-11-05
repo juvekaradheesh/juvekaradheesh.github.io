@@ -107,7 +107,7 @@ export const publications: Publication[] = [
   {
     "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
     "authors": "Adheesh Juvekar, Onkar Susladkar, Kiet A. Nguyen, Muntasir Wahed, Nabeel Bashir, Xiaona Zhou, Tianjiao Yu, Vedant Shah, Ismini Lourentzou",
-    "journal": "Submitted",
+    "journal": "arXiv preprint",
     "time": "2026",
     "abstract": "Video editing spans diverse editing paradigms, yet achieving high-quality instruction-guided and subject-guided editing within a single unified framework remains challenging. We introduce EditVid, a training-free framework combining sparse causal memory for local coherence, correspondence-based post-attention token injection for long-range identity preservation, and soft latent blending for edit locality. The same framework supports instruction-guided and reference-guided edits, including style transfer, attribute modification, object insertion, part-level editing, and subject replacement. On FiVE, EditVid achieves 78.16 FiVE-Acc, compared with 58.95 for the strongest evaluated training-free baseline, while obtaining competitive results on IVEBench. A user study further shows a 51.8% overall preference for EditVid over 7 competing methods.",
     "image": "/papers/editvid.webp",
@@ -139,28 +139,10 @@ export const publications: Publication[] = [
     "abstractSource": "https://arxiv.org/abs/2607.21580v2"
   },
   {
-    "title": "JOLT: Uncertainty-Selective Self-Ensembling for Geometric Consistency in Video Generation",
-    "authors": "Dong-Hwan Jang, Ying Shen, Adheesh Juvekar, Onkar Susladkar, Ismini Lourentzou",
-    "journal": "Submitted",
-    "time": "2026"
-  },
-  {
     "title": "From Tokens to Trajectories: Parameter-Efficient Continuous Adaptation of Unified Multimodal Models with FlowShift",
     "authors": "Gayatri Deshmukh, Onkar Susladkar, Adheesh Juvekar, Halil Kilicoglu, Ismini Lourentzou",
-    "journal": "Submitted",
-    "time": "2026"
-  },
-  {
-    "title": "Fluxlearn’s to Write",
-    "authors": "Onkar Susladkar, Tushar Prakash, Kiet A. Nguyen, Adheesh Juvekar, Tianjiao Yu, Yifan Shen, Sparsh Mittal, Inderjit S Dhillon, Xiaochen Zhao, Ismini Lourentzou",
-    "journal": "Submitted",
-    "time": "2026"
-  },
-  {
-    "title": "UniSegFlow: Segmentation as a Unified Thinking Paradigm for Visual Understanding, Generation, and Editing via Discrete Flow Matching",
-    "authors": "Adheesh Juvekar, Kiet A. Nguyen, Dong-Hwan Jang, Onkar Kishor Susladkar, Xinzhuo Li, Vedant Shah, Ismini Lourentzou",
-    "journal": "In preparation",
-    "time": "2026"
+    "journal": "WACV 2027 · Accepted",
+    "time": "2027"
   },
   {
     "title": "Best of Both Worlds: Multimodal Reasoning and Generation via Unified Discrete Flow Matching",
@@ -233,8 +215,8 @@ export const publications: Publication[] = [
   {
     "title": "PRIMA: Multi-Image Vision-Language Models for Reasoning Segmentation",
     "authors": "Muntasir Wahed*, Kiet A. Nguyen*, Adheesh Juvekar, Xinzhuo Li, Xiaona Zhou, Vedant Shah, Tianjiao Yu, Pinar Yanardag, Ismini Lourentzou",
-    "journal": "Submitted",
-    "time": "2024",
+    "journal": "WACV 2027 · Accepted",
+    "time": "2027",
     "link": "https://plan-lab.github.io/projects/prima/",
     "abstract": "Despite significant advancements in Large Vision-Language Models (LVLMs)' capabilities, existing pixel-grounding models operate in single-image settings, limiting their ability to perform detailed, fine-grained comparisons across multiple images. Conversely, current multi-image understanding models lack pixel-level grounding. Our work addresses this gap by introducing the task of multi-image pixel-grounded reasoning alongside PRIMA, an LVLM that integrates pixel-level grounding with robust multi-image reasoning to produce contextually rich, pixel-grounded explanations. Central to PRIMA is SQuARE, a vision module that injects cross-image relational context into compact query-based visual tokens before fusing them with the language backbone. To support training and evaluation, we curate M4SEG, a new multi-image reasoning segmentation benchmark consisting of ~744K question-answer pairs that require fine-grained visual understanding across multiple images. PRIMA outperforms state-of-the-art baselines with 7.83% and 11.25% improvements in Recall and S-IoU, respectively. Ablation studies further demonstrate the effectiveness of the proposed SQuARE module in capturing cross-image relationships.",
     "image": "/papers/prima.webp",

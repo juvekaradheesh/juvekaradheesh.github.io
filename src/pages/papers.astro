@@ -2,8 +2,8 @@
 import Layout from '@/layouts/Layout.astro';
 import { publications } from '@/data/cv';
 import PublicationCard from '@/components/ui/PublicationCard.astro';
-const papersWithThumbnails = publications
-  .filter(paper => paper.image)
+const displayedPapers = publications
+  .filter(paper => paper.image || paper.journal.includes('Accepted'))
   .map(paper => ({
     ...paper,
     journal: ['Submitted', 'arXiv preprint'].includes(paper.journal) ? 'Preprint' : paper.journal,
@@ -16,6 +16,6 @@ const papersWithThumbnails = publications
       <h1 class="text-4xl font-bold mb-4">Publications & preprints</h1>
       <p class="text-base-content/70">Multimodal reasoning, grounded understanding, and controllable visual generation.</p>
     </header>
-    <div>{papersWithThumbnails.map(paper => <PublicationCard paper={paper} detailed />)}</div>
+    <div>{displayedPapers.map(paper => <PublicationCard paper={paper} detailed />)}</div>
   </section>
 </Layout>
